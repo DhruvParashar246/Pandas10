@@ -1,0 +1,7 @@
+import pandas as pd
+
+def daily_leads_and_partners(daily_sales: pd.DataFrame) -> pd.DataFrame:
+    
+    num_unique = daily_sales.groupby(['date_id', 'make_name']).nunique().reset_index()
+
+    return num_unique[['date_id', 'make_name', 'lead_id', 'partner_id']].rename(columns = {'lead_id' : 'unique_leads', 'partner_id' : 'unique_partners'})
